@@ -30,3 +30,12 @@ docker run -it --rm -p 3000:3000 sample:dev
 ```
 
 # Server Express Node JS Section
+
+## Bootstrap
+```bash
+docker run -it --rm -v ${PWD}:/app -w /app -p 3001:3000 node:latest /bin/bash
+npm init -y
+npm install express
+npm install --save-dev nodemon
+```
+
