@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  client:
+    image: client
+    container_name: client
+    hostname: client.local
+    ports:
+      - '3000:3000'
+    networks:
+      - my-network
+
+  server:
+    image: server
+    container_name: server
+    hostname: server.local
+    ports:
+      - '3001:3001'
+    networks:
+      - my-network
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    hostname: mysql.local
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+    ports:
+      - '3306:3306'
+    volumes:
+      - './db/setup.sql:/docker-entrypoint-initdb.d/setup.sql'
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    name: my-network
